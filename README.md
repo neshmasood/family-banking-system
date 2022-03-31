@@ -7,8 +7,6 @@ Family Banking System (FBS) is a website to help help families manage chores and
 
 [User Story](https://github.com/neshmasood/family-banking-systeme/#user-story)
 |
-[User Flow](https://github.com/neshmasood/family-banking-system/#user-flow)
-|
 [Wireframe](https://github.com/neshmasood/family-banking-system/#wireframes)
 |
 [Data ERD](https://github.com/neshmasood/family-banking-system/#erd)
