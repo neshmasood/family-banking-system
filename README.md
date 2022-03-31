@@ -26,3 +26,5 @@ As a User, I want to be able to edit my account.
 As a User, I want to be able to see my balance.
 As a User, I want to be able to transfer money to other family members on my account.
 
+# ERD
+
