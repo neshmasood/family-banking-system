@@ -28,3 +28,6 @@ As a User, I want to be able to transfer money to other family members on my acc
 
 # ERD
 
+![Screen Shot 2022-03-30 at 10 32 36 PM](https://user-images.githubusercontent.com/92559697/160971348-eefeb0e9-3ce0-43b7-b289-f618b0a5e6b1.png)
+
+
