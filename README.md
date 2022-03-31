@@ -26,9 +26,10 @@ As a User, I want to be able to edit my account.
 As a User, I want to be able to see my balance.
 As a User, I want to be able to transfer money to other family members on my account.
 
+
 # ERD
 
-![Screen Shot 2022-03-31 at 12 19 29 AM](https://user-images.githubusercontent.com/92559697/160982036-08515cee-8983-4b42-9d05-e3679af2232e.png)
+![Screen Shot 2022-03-31 at 12 22 55 AM](https://user-images.githubusercontent.com/92559697/160982343-128abd44-ade0-4372-aa8d-4b319d79b6c4.png)
 
 
 
