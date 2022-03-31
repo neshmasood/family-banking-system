@@ -45,10 +45,14 @@ As a User, I want to be able to transfer money to other family members on my acc
 
 # Wireframes
 
-![Screen Shot 2022-03-30 at 11 48 58 PM](https://user-images.githubusercontent.com/92559697/160979049-665b3573-594c-414e-a2d5-204a9cda29da.png) |
+![Screen Shot 2022-03-30 at 11 48 58 PM](https://user-images.githubusercontent.com/92559697/160979049-665b3573-594c-414e-a2d5-204a9cda29da.png) 
+________________________________________________________________________________________________________________________________________________
 
-![Screen Shot 2022-03-30 at 11 48 36 PM](https://user-images.githubusercontent.com/92559697/160979060-759a6652-a5b8-41ac-92e5-cd8af3b245e8.png) |
+![Screen Shot 2022-03-30 at 11 48 36 PM](https://user-images.githubusercontent.com/92559697/160979060-759a6652-a5b8-41ac-92e5-cd8af3b245e8.png) 
+________________________________________________________________________________________________________________________________________________
 
-![Screen Shot 2022-03-30 at 11 48 07 PM](https://user-images.githubusercontent.com/92559697/160979090-ae621044-d0b6-4909-930f-eb6ba286056e.png) |
+![Screen Shot 2022-03-31 at 12 35 58 AM](https://user-images.githubusercontent.com/92559697/160983783-edc3ee61-40a2-4770-b5d6-82c6921faf1e.png)
+________________________________________________________________________________________________________________________________________________
+
 
 
