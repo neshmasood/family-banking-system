@@ -7,5 +7,11 @@ urlpatterns = [
     path('logout/', views.logout_view, name='logout'),
     path('signup/', views.signup_view, name='signup'),
     path('tasks/', views.Task_List.as_view(), name="task_list"),
+    path('tasks/new/', views.Task_Create.as_view(), name="task_create"),
+    path('tasks/<int:pk>/', views.Task_Detail.as_view(), name="task_detail"),
+    path('tasks/<int:pk>/update', views.Task_Update.as_view(), name="task_update"),
+    path('tasks/<int:pk>/delete', views.Task_Delete.as_view(), name="task_delete")
+    
+
 
 ]

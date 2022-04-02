@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic.base import TemplateView
 from django.views import View 
-from django.views.generic.edit import CreateView
+from django.views.generic import DetailView, CreateView, DeleteView, UpdateView
 from django.http import HttpResponse, HttpResponseRedirect 
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
@@ -34,14 +34,34 @@ class Task_List(TemplateView):
             context['header'] = "Daily Tasks" # this is where we add the key into our context object for the view to use
         return context
 
+
 class Task_Create(CreateView):
     model = Task
-    fields = ['name', 'amount', 'duedate', 'status', 'user']
+    fields = ['name', 'amount', 'duedate', 'status']
     template_name = "task_create.html"
     success_url = "/tasks/"
     def get_success_url(self):
         return reverse('task_detail', kwargs={'pk': self.object.pk})
    
+
+class Task_Detail(DetailView): 
+    model = Task
+    template_name="task_detail.html"
+
+class Task_Update(UpdateView):
+    model = Task
+    fields = ['name', 'amount', 'duedate', 'status', 'user']
+    template_name = "task_update.html"
+    # success_url = "/tasks/"
+    def get_success_url(self):
+        return reverse('task_detail', kwargs={'pk': self.object.pk})
+
+class Task_Delete(DeleteView):
+    model = Task
+    template_name = "task_delete_confirmation.html"
+    success_url = "/tasks/"
+
+
 
 
 # django auth

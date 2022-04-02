@@ -9,7 +9,7 @@ List of Tasks
 
 <form>
     <div>
-        <!-- searches for the name of the cat -->
+        <!-- searches for the name of the tasks -->
         <input type="text" name="name" placeholder="name"/>
         <input type="submit" value="Search"/>
     </div>
@@ -23,5 +23,7 @@ List of Tasks
     <h3>Amount: {{task.amount}} </h3>>
     <h3>Due Date: {{task.duedate}} </h3>>
     <h3>Status: {{task.status}} </h3>>
+    
+    {% endfor %}
 
 {% endblock %}
