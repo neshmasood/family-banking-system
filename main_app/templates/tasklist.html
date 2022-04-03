@@ -17,12 +17,15 @@ List of Tasks
     <a href="{% url 'task_list' %}">Clear Search</a>
 </form>
 
-<h1>{{header}}</h1>
+<h3>{{header}}</h3>
     {% for task in tasks %}
     <h6>Name: {{task.name}} </h6>
     <h6>Amount: {{task.amount}} </h6>
     <h6>Due Date: {{task.duedate}} </h6>
     <h6>Status: {{task.status}} </h6>
+    <p>Created by:
+        <a href="/user/{{ task.user.username }}">{{ task.user.username }}</a>
+    </p>
     
     {% endfor %}
 

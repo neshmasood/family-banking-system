@@ -37,11 +37,16 @@ class Task_List(TemplateView):
 
 class Task_Create(CreateView):
     model = Task
-    fields = ['name', 'amount', 'duedate', 'status']
+    fields = ['name', 'amount', 'duedate', 'status', 'user']
     template_name = "task_create.html"
-    success_url = "/tasks/"
-    def get_success_url(self):
-        return reverse('task_detail', kwargs={'pk': self.object.pk})
+    # success_url = "/tasks/"
+    # def get_success_url(self):
+    #     return reverse('task_detail', kwargs={'pk': self.object.pk})
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.user = self.request.user
+        self.object.save()
+        return HttpResponseRedirect('/tasks')
    
 
 class Task_Detail(DetailView): 
@@ -61,6 +66,11 @@ class Task_Delete(DeleteView):
     template_name = "task_delete_confirmation.html"
     success_url = "/tasks/"
 
+
+def profile(request, username):
+    user = User.objects.get(username=username)
+    tasks = Task.objects.filter(user=user)
+    return render(request, 'profile.html', {'username': username, 'tasks': tasks})
 
 
 
