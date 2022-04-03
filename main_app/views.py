@@ -85,6 +85,31 @@ def transactions_show(request, transaction_id):
     return render(request, 'transaction_show.html', {'transaction': transaction})
 
 
+
+class TransactionCreate(CreateView):
+    model = Transaction
+    fields = '__all__'
+    template_name = "transaction_form.html"
+    success_url = '/transactions'
+
+
+
+class TransactionUpdate(UpdateView):
+    model = Transaction
+    fields = ['transaction_number', 'balance', 'date']
+    template_name = "transaction_update.html"
+    success_url = '/transactions'
+
+
+
+class TransactionDelete(DeleteView):
+    model = Transaction
+    template_name = "transaction_confirm_delete.html"
+    success_url = '/transactions'
+
+
+
+
 # django auth
 def login_view(request):
      # if post, then authenticate (user submitted username and password)
