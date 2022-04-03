@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1>Delete a Transaction</h1>
+    <h3>Are you sure you want to delete <strong>{{ transaction }}</strong>?</h3>
+    
+    <form method="post">
+        {% csrf_token %}
+        <input type="submit" value="Yes - Delete!"/>
+        <a href="{% url 'transactions_show' transaction.id %}">Cancel</a>
+    </form>
+
+{% endblock %}

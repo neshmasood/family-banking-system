@@ -10,6 +10,13 @@
     <p>Created by:
         <a href="/user/{{ task.user.username }}">{{ task.user.username }}</a>
     </p>
+    <h3>Toys owned:</h3>
+    
+    {% for transaction in transaction.transactions.all %}
+        <div>{{ transaction.transaction_number }}</div>
+    {% empty %}
+        <div> {user.username} has no transactions 🙁</div>
+    {% endfor %}
 </div>
 <div>
     <a href="{% url 'task_update' task.pk %}">Update</a>

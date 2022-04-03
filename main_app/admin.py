@@ -5,3 +5,4 @@ from .models import Task, Transaction
 # Register your models here.
 
 admin.site.register(Task)
+admin.site.register(Transaction)
