@@ -86,7 +86,7 @@ def transactions_show(request, transaction_id):
 
 
 
-class TransactionCreate(CreateView):
+class Transaction_Create(CreateView):
     model = Transaction
     fields = '__all__'
     template_name = "transaction_form.html"
@@ -94,7 +94,7 @@ class TransactionCreate(CreateView):
 
 
 
-class TransactionUpdate(UpdateView):
+class Transaction_Update(UpdateView):
     model = Transaction
     fields = ['transaction_number', 'balance', 'date']
     template_name = "transaction_update.html"
@@ -102,7 +102,7 @@ class TransactionUpdate(UpdateView):
 
 
 
-class TransactionDelete(DeleteView):
+class Transaction_Delete(DeleteView):
     model = Transaction
     template_name = "transaction_confirm_delete.html"
     success_url = '/transactions'
