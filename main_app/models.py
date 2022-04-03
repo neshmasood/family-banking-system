@@ -21,6 +21,7 @@ class Task(models.Model):
     duedate = models.DateTimeField()
     status = models.CharField(max_length=10, choices = STATUS_CHOICES)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    transactions = models.ManyToManyField(Transaction) # M:M example
     created_at = models.DateTimeField(auto_now_add=True)
 
 

@@ -15,20 +15,20 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-default navbar-static-top">
-      <div class="container">
-        <ul class="nav navbar-nav">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <ul class="navbar-nav mr-auto">
           <!-- <li><a class="navbar-brand" href="/">Landing_Page</a></li> -->
           {% if user.is_authenticated %}
-          <li><a class="navbar-link" href="{% url 'logout' %}">LogOut</a></li>
+          <li class="nav-item active"><a class="navbar-link" href="{% url 'logout' %}">LogOut</a></li>
           {% else %}
-          <li><a class="navbar-link" href="{% url 'login' %}">Login</a></li>
-          <li><a class="navbar-link" href="{% url 'signup' %}">SignUp</a></li>
+          <li class="nav-item"><a class="navbar-link" href="{% url 'login' %}">Login</a></li>
+          <li class="nav-item"><a class="navbar-link" href="{% url 'signup' %}">SignUp</a></li>
           {% endif %}
-          <li><a class="navbar-link" href="/admin">Admin</a> </li>
-          <li><a class="navbar-link" href="/">Landing_Page</a></li>
-          <li><a href="/tasks">Tasks</a></li>
-          <li><a class="navbar-link" href="/tasks/new">Add a Task</a></li>
+          <li class="nav-item"><a class="navbar-link" href="/admin">Admin</a> </li>
+          <li class="nav-item"><a class="navbar-link" href="/">Landing_Page</a></li>
+          <li class="nav-item"><a href="/tasks">Tasks</a></li>
+          <li class="nav-item"><a class="navbar-link" href="/tasks/new">Add a Task</a></li>
         </ul>
       </div>
      
