@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.urls import reverse
-from .models import Task
+from .models import Task, Transaction
 
 
 
@@ -71,6 +71,42 @@ def profile(request, username):
     user = User.objects.get(username=username)
     tasks = Task.objects.filter(user=user)
     return render(request, 'profile.html', {'username': username, 'tasks': tasks})
+
+
+
+# Transactions view function
+
+def transactions_index(request):
+    transactions = Transaction.objects.all()
+    return render(request, 'transaction_index.html', {'transactions': transactions})
+
+def transactions_show(request, transaction_id):
+    transaction = Transaction.objects.get(id=transaction_id)
+    return render(request, 'transaction_show.html', {'transaction': transaction})
+
+
+
+class TransactionCreate(CreateView):
+    model = Transaction
+    fields = '__all__'
+    template_name = "transaction_form.html"
+    success_url = '/transactions'
+
+
+
+class TransactionUpdate(UpdateView):
+    model = Transaction
+    fields = ['transaction_number', 'balance', 'date']
+    template_name = "transaction_update.html"
+    success_url = '/transactions'
+
+
+
+class TransactionDelete(DeleteView):
+    model = Transaction
+    template_name = "transaction_confirm_delete.html"
+    success_url = '/transactions'
+
 
 
 
