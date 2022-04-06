@@ -11,8 +11,13 @@ class Transaction(models.Model):
         return self.transaction_number
 
 STATUS_CHOICES = {
-    ("Yes", "complete"), 
-    ("No", "incomplete")
+    ("Completed", "complete"), 
+    ("Incomplete", "incomplete")
+}
+
+USER_CHOICES ={
+    ("child", "child"),
+    ("parent", "parent")
 }
 
 class Task(models.Model):
@@ -20,9 +25,13 @@ class Task(models.Model):
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     duedate = models.DateTimeField()
     status = models.CharField(max_length=10, choices = STATUS_CHOICES)
+
+    assigned_to = models.CharField(max_length=20, choices = USER_CHOICES)
+
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     transactions = models.ManyToManyField(Transaction) # M:M example
     created_at = models.DateTimeField(auto_now_add=True)
+
 
 
     def __str__(self):

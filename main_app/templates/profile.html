@@ -1,4 +1,22 @@
+
 {% extends 'base.html' %}
+{% block content %}
+{% if errors %}
+<p style="color: red;">{{errors}}</p>
+{% endif %}
+<form action="" method="POST" class="register">
+    <legend>
+        <h3>Sign Up</h3>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input class="waves-effect waves-light btn grey darken-2" type="submit" value="Submit">
+    </legend>
+</form>
+{% endblock %}
+
+
+
+<!-- {% extends 'base.html' %}
 {% load static %}
 
 
@@ -13,7 +31,7 @@
 
     {% endfor %}
 
-{% endblock %}
+{% endblock %} -->
 
 
 
