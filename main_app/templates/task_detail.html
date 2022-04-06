@@ -7,16 +7,16 @@
     <h3>Amount: {{task.amount}} </h3>
     <h3>Due Date: {{task.duedate}} </h3>
     <h3>Status: {{task.status}} </h3>
-    <h3>Assigned To: {{task.assigned_to}} </h3>
+    <h3>Assigned To: {{task.user.assigned_to}} </h3>
     <p>Created by:
         <a href="/user/{{ task.user.username }}">{{ task.user.username }}</a>
     </p>
-    <h3>Toys owned:</h3>
+    <h3>Transactions made:</h3>
     
-    {% for transaction in transaction.transactions.all %}
+    {% for transaction in task.transactions.all %}
         <div>{{ transaction.transaction_number }}</div>
     {% empty %}
-        <div> {user.username} has no transactions 🙁</div>
+        <div> {task.name} has no transactions 🙁</div>
     {% endfor %}
 </div>
 <div>

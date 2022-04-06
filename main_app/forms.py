@@ -16,8 +16,6 @@ class SignUpForm(UserCreationForm):
     role = forms.CharField(label='What is your role?', widget=forms.Select(choices=ROLE_CHOICES))
 
 
-
-
     class Meta:
         model = User
         fields = ('username', 'first_name', 'last_name', 'email', 'role', 'password1', 'password2' )

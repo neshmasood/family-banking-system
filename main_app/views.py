@@ -56,7 +56,7 @@ class Task_Detail(DetailView):
 
 class Task_Update(UpdateView):
     model = Task
-    fields = ['name', 'amount', 'duedate', 'status', 'user']
+    fields = ['name', 'amount', 'duedate', 'status']
     template_name = "task_update.html"
     # success_url = "/tasks/"
     def get_success_url(self):
@@ -122,7 +122,7 @@ def login_view(request):
         else:
             errors = form.errors
     form = UserCreationForm()
-    return render(request, 'signup.html', {'form': form, 'errors': errors})
+    return render(request, 'login.html', {'form': form, 'errors': errors})
 
 
 
