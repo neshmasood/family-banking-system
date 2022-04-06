@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic.base import TemplateView
 from django.views import View 
 from django.views.generic import DetailView, CreateView, DeleteView, UpdateView
@@ -10,6 +10,8 @@ from django.urls import reverse
 from .models import Task, Transaction
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
+from .forms import SignUpForm
+
 
 
 # Create your views here.
@@ -42,9 +44,6 @@ class Task_Create(LoginRequiredMixin, CreateView):
     fields = ['name', 'amount', 'duedate', 'status', 'user']
     template_name = "task_create.html"
     success_url = '/'
-    # success_url = "/tasks/"
-    # def get_success_url(self):
-    #     return reverse('task_detail', kwargs={'pk': self.object.pk})
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
@@ -111,67 +110,7 @@ class Transaction_Delete(DeleteView):
 
 
 
-
 # django auth
-# def login_view(request):
-#      # if post, then authenticate (user submitted username and password)
-#     if request.method == 'POST':
-#         form = AuthenticationForm(request, request.POST)
-#         # form = LoginForm(request.POST)
-#         if form.is_valid():
-#             u = form.cleaned_data['username']
-#             p = form.cleaned_data['password']
-#             user = authenticate(username = u, password = p)
-#             if user is not None:
-#                 if user.is_active:
-#                     login(request, user)
-#                     return HttpResponseRedirect('/user/'+u)
-#                 else:
-#                     print('The account has been disabled.')
-#                     return HttpResponseRedirect('/login')
-#             else:
-#                 print('The username and/or password is incorrect.')
-#                 return HttpResponseRedirect('/login')
-#     else: # it was a get request so send the empty login form
-#         # form = LoginForm()
-#         form = AuthenticationForm()
-#         return render(request, 'login.html', {'form': form})
-
-
-# def login_view(request):
-#     if request.method == 'POST':
-#         form = AuthenticationForm(request, request.POST)
-#         if form.is_valid():
-#             u = form.cleaned_data['username']
-#             p = form.cleaned_data['password']
-#             user = authenticate(username = u, password = p)
-#             if user is not None:
-#                 if user.is_active:
-#                     login(request, user)
-#                     return HttpResponseRedirect('/user/'+u)
-#                 else:
-#                     return render(request, 'login.html', {'form': form})
-#             else:
-#                 return render(request, 'login.html', {'form': form})
-#         else: 
-#             return render(request, 'signup.html', {'form': form})
-#     else:
-#         form = AuthenticationForm()
-#         return render(request, 'login.html', {'form': form})
-
-# def login_view(request):
-#     errors = ''
-#     if request.method == "POST":
-#         form = UserCreationForm(request.POST)
-#         if form.is_valid():
-#             user = form.save()
-#             login(request, user)
-#             return HttpResponseRedirect('/')
-#         else:
-#             errors = form.errors
-#     form = UserCreationForm()
-#     return render(request, 'login.html', {'form': form, 'errors': errors})
-
 def login_view(request):
     errors = ''
     if request.method == "POST":
@@ -192,33 +131,18 @@ def logout_view(request):
     return HttpResponseRedirect('/')
 
 
-# def signup_view(request):
-#     if request.method == 'POST':
-#         form = UserCreationForm(request.POST)
-#         if form.is_valid():
-#             user = form.save()
-#             login(request, user)
-#             print('Hello', user.username)
-#             return HttpResponseRedirect('/user/'+str(user.username))
-#         else:
-#             HttpResponse('<h1>Try Again</h1>')
-#     else:
-#         form = UserCreationForm()
-#         return render(request, 'signup.html', {'form': form})
-
-
 
 def signup_view(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = SignUpForm(request.POST)
         if form.is_valid():
-            user = form.save()
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
             login(request, user)
-            print('HEY', user.username)
-            return HttpResponseRedirect('/')
-        else:
-            return render(request, 'signup.html', {'form': form})
-
+            return redirect('/')
     else:
-        form = UserCreationForm()
-        return render(request, 'signup.html', {'form': form})
+        form = SignUpForm()
+    return render(request, 'signup.html', {'form': form})
+
