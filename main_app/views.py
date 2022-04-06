@@ -111,18 +111,41 @@ class Transaction_Delete(DeleteView):
 
 
 # django auth
+# def login_view(request):
+#     # errors = ''
+#     if request.method == "POST":
+#         form = UserCreationForm(request.POST)
+#         if form.is_valid():
+#             user = form.save()
+#             login(request, user)
+#             return redirect('/')
+#         else:
+#             errors = form.errors
+#     form = UserCreationForm()
+#     return render(request, 'login.html', {'form': form, 'errors': errors})
+
 def login_view(request):
-    errors = ''
-    if request.method == "POST":
-        form = UserCreationForm(request.POST)
+    # if POST, then authenticate the user (submitting the username and password)
+    if request.method == 'POST':
+        form = AuthenticationForm(request, request.POST)
         if form.is_valid():
-            user = form.save()
-            login(request, user)
-            return redirect('/')
-        else:
-            errors = form.errors
-    form = UserCreationForm()
-    return render(request, 'login.html', {'form': form, 'errors': errors})
+            u = form.cleaned_data['username']
+            p = form.cleaned_data['password']
+            user = authenticate(username = u, password = p)
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    return HttpResponseRedirect('/')
+                else:
+                    return render(request, 'login.html', {'form': form})
+            else:
+                return render(request, 'login.html', {'form': form})
+        else: 
+            return render(request, 'signup.html', {'form': form})
+    else: # it was a get request so send the emtpy login form
+        # form = LoginForm()
+        form = AuthenticationForm()
+        return render(request, 'login.html', {'form': form})
 
 
 

@@ -7,15 +7,15 @@ List of Tasks
 {% block content %}
 
 
-<form>
-    <div>
+<!-- <form>
+    <div> -->
         <!-- searches for the name of the tasks -->
-        <input type="text" name="name" placeholder="name"/>
+        <!-- <input type="text" name="name" placeholder="name"/>
         <input type="submit" value="Search"/>
-    </div>
+    </div> -->
     <!-- this a tag will redirect back to tasklist without a query param! be sure to use the "name" you called the route in your main_app/urls.py -->
-    <a href="{% url 'task_list' %}">Clear Search</a>
-</form>
+    <!-- <a href="{% url 'task_list' %}">Clear Search</a>
+</form> -->
 
 <h3>{{header}}</h3>
     {% for task in tasks %}
