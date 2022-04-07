@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+
+
+
+
+
+
+<div class="card-body">
+    <h3>{{ user.username }}'s Dashboard</h3>
+</div>
+
+
+<div class="container-fluid">
+    <div class="card">
+        <h6>List of Tasks</h6>
+        {% for task in tasks %}
+        <h6>Name: {{task.name}} </h6>
+        <h6>Amount: {{task.amount}} </h6>
+        <h6>Due Date: {{task.duedate}} </h6>
+        <h6>Status: {{task.status}} </h6>
+        <h6>Assigned To: {{task.username}} </h6>
+        <p>Created by:
+            <a href="/user/{{ task.user.username }}">{{ task.user.username }}</a>
+        </p>
+        
+        {% endfor %}
+
+    </div>
+</div>
+<!-- <div class="menu-item">
+    <div class="menu-content">
+        <div class="separator mx-1 my-4"></div>
+    </div>
+</div>	 -->
+
+
+<!-- <div class="container-fluid">
+    <div class="card">
+        <h6>My Family</h6>
+        <p></p>
+    </div>
+</div> -->
+<div class="menu-item">
+    <div class="menu-content">
+        <div class="separator mx-1 my-4"></div>
+    </div>
+</div>	
+
+<div class="container-fluid">
+    <div class="card">
+        <h6>Recent Transactions</h6>
+        {% for transaction in transactions %}
+        <div>
+            <a href="{% url 'transactions_show' transaction.id %}">
+                <div>
+                    <p>Amount: ${{ transaction.amount }}</p>
+                    <p>Date: {{ transaction.date }}</p>
+                </div>
+            </a>
+        </div>
+        <hr/>
+    {% endfor %}
+        
+        <p></p>
+    </div>
+</div>
+
+
+{% endblock %}

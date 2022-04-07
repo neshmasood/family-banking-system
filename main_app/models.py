@@ -45,7 +45,7 @@ class Task(models.Model):
 
 
 
-class Families(models.Model):
+class Family(models.Model):
     name = models.CharField(max_length=50),
     description = models.CharField(max_length=200)
 
@@ -53,5 +53,5 @@ class Families(models.Model):
         return self.name
 
 
-class Assignments(models.Model):
+class Assignment(models.Model):
     date = models.DateTimeField(default=timezone.now)   

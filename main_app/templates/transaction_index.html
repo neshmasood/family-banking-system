@@ -7,8 +7,7 @@
         <div>
             <a href="{% url 'transactions_show' transaction.id %}">
                 <div>
-                    <span>{{ transaction.transaction_number }}</span>
-                    <p>Balance: {{ transaction.balance }}</p>
+                    <p>Amount: ${{ transaction.amount }}</p>
                     <p>Date: {{ transaction.date }}</p>
                 </div>
             </a>

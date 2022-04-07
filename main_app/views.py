@@ -20,6 +20,9 @@ from .forms import SignUpForm
 class Landing_Page(TemplateView): 
     template_name = 'landing_page.html'
 
+class Dashboard(TemplateView): 
+    template_name = 'dashboard.html'
+
 
 
 class Task_List(TemplateView):
@@ -35,13 +38,12 @@ class Task_List(TemplateView):
         else:
             context['tasks'] = Task.objects.all()
             context['header'] = "Daily Tasks" # this is where we add the key into our context object for the view to use
-        return context
+        return context 
 
 
 class Task_Create(LoginRequiredMixin, CreateView):
-
     model = Task
-    fields = ['name', 'amount', 'duedate', 'status', 'user']
+    fields = ['name', 'amount', 'duedate', 'description', 'task_status', 'task_approval', 'user']
     template_name = "task_create.html"
     success_url = '/'
     def form_valid(self, form):
@@ -56,7 +58,7 @@ class Task_Detail(DetailView):
 
 class Task_Update(UpdateView):
     model = Task
-    fields = ['name', 'amount', 'duedate', 'status']
+    fields = ['name', 'amount', 'duedate', 'description', 'task_status', 'task_approval']
     template_name = "task_update.html"
     # success_url = "/tasks/"
     def get_success_url(self):
@@ -79,7 +81,7 @@ def profile(request, username):
 
 def transactions_index(request):
     transactions = Transaction.objects.all()
-    return render(request, 'transaction_index.html', {'transactions': transactions})
+    return render(request, 'dashboard.html', {'transactions': transactions})
 
 def transactions_show(request, transaction_id):
     transaction = Transaction.objects.get(id=transaction_id)
@@ -97,7 +99,7 @@ class Transaction_Create(CreateView):
 
 class Transaction_Update(UpdateView):
     model = Transaction
-    fields = ['transaction_number', 'balance', 'date']
+    fields = ['amount', 'date']
     template_name = "transaction_update.html"
     success_url = '/transactions'
 
@@ -135,7 +137,7 @@ def login_view(request):
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    return HttpResponseRedirect('/')
+                    return HttpResponseRedirect('/dashboard/')
                 else:
                     return render(request, 'login.html', {'form': form})
             else:
