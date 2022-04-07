@@ -6,7 +6,9 @@
     <h3>Name: {{task.name}} </h3>
     <h3>Amount: {{task.amount}} </h3>
     <h3>Due Date: {{task.duedate}} </h3>
-    <h3>Status: {{task.status}} </h3>
+    <h3>Description: {{task.description}} </h3>
+    <h3>Task-Status: {{task.task_status}} </h3>
+    <h3>Task-Approval: {{task.task_approval}} </h3>
     <h3>Assigned To: {{task.user.assigned_to}} </h3>
     <p>Created by:
         <a href="/user/{{ task.user.username }}">{{ task.user.username }}</a>
@@ -14,7 +16,7 @@
     <h3>Transactions made:</h3>
     
     {% for transaction in task.transactions.all %}
-        <div>{{ transaction.transaction_number }}</div>
+        <div>{{ transaction.amount }}</div>
     {% empty %}
         <div> {task.name} has no transactions 🙁</div>
     {% endfor %}

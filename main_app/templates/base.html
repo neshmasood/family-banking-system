@@ -22,25 +22,18 @@
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-
-          </div>
-          
-
-       
         <ul class="navbar-nav mr-auto">
           <li class="nav-item"><a class="navbar-link" href="/admin">Admin</a> </li>
-          <li class="nav-item"><a class="navbar-link" href="/">Home</a></li>
           <!-- <li><a class="navbar-brand" href="/">Landing_Page</a></li> -->
           {% if user.is_authenticated %}
+          <!-- <li class="nav-item">
+            <a class="navbar-link" href="/">Dashboard</a>
+          </li> -->
           <a href="{% url 'profile' user.username %}">Hello, {{ user.username }}!</a>
           <li class="nav-item active">
             <a class="navbar-link" href="{% url 'logout' %}">LogOut</a>
           </li>
           <!-- <li class="nav-item"><a class="navbar-link" href="/admin">Admin</a> </li> -->
-          <li class="nav-item">
-            <a class="navbar-link active" href="/">Home</a>
-          </li>
           <li class="nav-item">
             <a href="/tasks">Tasks</a>
           </li>
@@ -51,7 +44,7 @@
             <a class="navbar-link active" href="{% url 'transactions_create' %}">Account</a>
           </li>
           <li class="nav-item">
-            <a class="navbar-link active" href="{% url 'transactions_index' %}">List of Transactions</a>
+            <a class="navbar-link active" href="{% url 'dashboard' %}">Dashboard</a>
           </li>
           {% else %}
           <li class="nav-item">
