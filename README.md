@@ -39,9 +39,7 @@ As a User, I want to be able to transfer money to other family members on my acc
 
 ## ERD
 
-<img width="670" alt="Screen Shot 2022-04-06 at 8 51 56 PM" src="https://user-images.githubusercontent.com/92559697/162104512-95394f78-dfb7-4f3e-adee-248e038e7a44.png">
-
-
+![Screen Shot 2022-04-06 at 8 56 11 PM](https://user-images.githubusercontent.com/92559697/162104853-8a022f5d-bc5d-40bc-8bf4-3136e3ef81fe.png)
 
 
 ![Screen Shot 2022-03-31 at 12 22 55 AM](https://user-images.githubusercontent.com/92559697/160982343-128abd44-ade0-4372-aa8d-4b319d79b6c4.png)
