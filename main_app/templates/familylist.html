@@ -1,4 +1,25 @@
+
 {% extends 'base.html' %}
+
+{% block title %}
+List of Family Members
+{% endblock %}
+
+{% block content %}
+
+
+
+<h3>{{header}}</h3>
+    {% for family in families %}
+    <h6>Name: {{family.name}} </h6>
+    
+    
+    {% endfor %}
+
+{% endblock %}
+
+
+<!-- {% extends 'base.html' %}
 
 {% block title %}
 List of Tasks
@@ -22,4 +43,4 @@ List of Tasks
     
     {% endfor %}
 
-{% endblock %}
+{% endblock %} -->

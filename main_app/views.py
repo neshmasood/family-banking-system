@@ -7,10 +7,11 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.urls import reverse
-from .models import Task, Transaction
+from .models import Family, Task, Transaction, Assignment
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from .forms import SignUpForm
+
 
 
 
@@ -47,8 +48,10 @@ class Task_Create(LoginRequiredMixin, CreateView):
     template_name = "task_create.html"
     success_url = '/'
     def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super().form_valid(form)
+        self.object = form.save(commit=False)
+        self.object.user = self.request.user
+        self.object.save()
+        return HttpResponseRedirect('/tasks')
 
    
 
@@ -109,6 +112,23 @@ class Transaction_Delete(DeleteView):
     model = Transaction
     template_name = "transaction_confirm_delete.html"
     success_url = '/transactions'
+
+
+
+class Family_Create(LoginRequiredMixin, CreateView):
+    model = Family
+    fields = ['name', 'description']
+    template_name = "task_create.html"
+    success_url = '/'
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.user = self.request.user
+        self.object.save()
+        return HttpResponseRedirect('/tasks')
+
+
+
+
 
 
 
