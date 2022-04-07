@@ -15,29 +15,51 @@
 </head>
 <body>
 
-  <header class="navbar navbar-expand-lg navbar-light bg-light" >
-
+  <header class="navbar navbar-expand-sm navbar-light bg-light" >
     <nav>
       <div class="container-fluid">
-        <div>
-          <a href="#" class="">FSB</a>
-        </div>
+          <a class="navbar-brand" href="#">Logo</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+
+          </div>
+          
+
+       
         <ul class="navbar-nav mr-auto">
           <li class="nav-item"><a class="navbar-link" href="/admin">Admin</a> </li>
           <li class="nav-item"><a class="navbar-link" href="/">Home</a></li>
           <!-- <li><a class="navbar-brand" href="/">Landing_Page</a></li> -->
           {% if user.is_authenticated %}
           <a href="{% url 'profile' user.username %}">Hello, {{ user.username }}!</a>
-          <li class="nav-item active"><a class="navbar-link" href="{% url 'logout' %}">LogOut</a></li>
+          <li class="nav-item active">
+            <a class="navbar-link" href="{% url 'logout' %}">LogOut</a>
+          </li>
           <!-- <li class="nav-item"><a class="navbar-link" href="/admin">Admin</a> </li> -->
-          <li class="nav-item"><a class="navbar-link" href="/">Home</a></li>
-          <li class="nav-item"><a href="/tasks">Tasks</a></li>
-          <li class="nav-item"><a class="navbar-link" href="/tasks/new">Add a Task</a></li>
-          <li class="nav-item"><a class="navbar-link" href="{% url 'transactions_create' %}">Account</a></li>
-          <li class="nav-item"><a class="navbar-link" href="{% url 'transactions_index' %}">List of Transactions</a></li>
+          <li class="nav-item">
+            <a class="navbar-link active" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="/tasks">Tasks</a>
+          </li>
+          <li class="nav-item">
+            <a class="navbar-link active" href="/tasks/new">Add a Task</a>
+          </li>
+          <li class="nav-item">
+            <a class="navbar-link active" href="{% url 'transactions_create' %}">Account</a>
+          </li>
+          <li class="nav-item">
+            <a class="navbar-link active" href="{% url 'transactions_index' %}">List of Transactions</a>
+          </li>
           {% else %}
-          <li class="nav-item"><a class="navbar-link" href="{% url 'login' %}">Login</a></li>
-          <li class="nav-item"><a class="navbar-link" href="{% url 'signup' %}">SignUp</a></li>
+          <li class="nav-item">
+            <a class="navbar-link active" href="{% url 'login' %}">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="navbar-link active" href="{% url 'signup' %}">SignUp</a>
+          </li>
           {% endif %}
          
         </ul>
