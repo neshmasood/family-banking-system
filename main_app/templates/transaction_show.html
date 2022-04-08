@@ -6,17 +6,13 @@
     <!-- I have to come back to this. I want user name shown with whom teh transaction is associated to -->
     <div>
         <div>
+            <h4>{{ transaction.amount }}</h4>
             <p>Amount: {{ transaction.amount }}</p>
             <p>Owned by:</p>
-
             {% for task in transaction.task_set.all %}
-
                 <p>{{ task.name }}</p>
-
             {% empty %}
-
                 <p>Nobody has this transaction.</p>
-                
             {% endfor %}
         </div>
 
