@@ -53,5 +53,6 @@ class Family(models.Model):
         return self.name
 
 
+
 class Assignment(models.Model):
     date = models.DateTimeField(default=timezone.now)   

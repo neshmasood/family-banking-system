@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Family Details</h1>
+    <div>
+        <div>
+            <p>Name: {{ family.name }}</p>
+            <p>Description: {{ family.description }}</p>
+        </div>
+        <div>
+            <a href="{% url 'families_update' family.id %}">Edit</a>
+            <a href="{% url 'families_delete' family.id %}">Delete</a>
+        </div>
+    </div>
+
+{% endblock %}

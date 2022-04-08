@@ -9,7 +9,11 @@ List of Tasks
 
 <h3>{{header}}</h3>
     {% for task in tasks %}
-    <h6>Name: {{task.name}} </h6>
+
+    <a href="{% url 'task_detail' task.pk %}">
+        <h6>Name: {{task.name}}</h6>
+    </a>
+    
     <h6>Amount: {{task.amount}} </h6>
     <h6>Due Date: {{task.duedate}} </h6>
     <h6>Description: {{task.description}} </h6>

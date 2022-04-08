@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+{% if errors %}
+<p style="color: red;">{{errors}}</p>
+{% endif %}
   <h2>Sign up</h2>
   <form method="post">
     {% csrf_token %}

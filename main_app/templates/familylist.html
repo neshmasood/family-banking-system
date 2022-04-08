@@ -11,36 +11,14 @@ List of Family Members
 
 <h3>{{header}}</h3>
     {% for family in families %}
-    <h6>Name: {{family.name}} </h6>
-    
-    
+
+    <a href="{% url 'family_detail' family.pk %}">
+        <h6>Name: {{family.name}}</h6>
+    </a>
+   
     {% endfor %}
 
 {% endblock %}
 
 
-<!-- {% extends 'base.html' %}
 
-{% block title %}
-List of Tasks
-{% endblock %}
-
-{% block content %}
-
-
-<h3>{{header}}</h3>
-    {% for task in tasks %}
-    <h6>Name: {{task.name}} </h6>
-    <h6>Amount: {{task.amount}} </h6>
-    <h6>Due Date: {{task.duedate}} </h6>
-    <h6>Description: {{task.description}} </h6>
-    <h6>Task Status: {{task.task_status}} </h6>
-    <h6>Task Approval: {{task.task_approval}} </h6>
-    <h6>Assigned To: {{task.username}} </h6>
-    <p>Created by:
-        <a href="/user/{{ task.user.username }}">{{ task.user.username }}</a>
-    </p>
-    
-    {% endfor %}
-
-{% endblock %} -->
