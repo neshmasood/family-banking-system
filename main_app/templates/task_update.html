@@ -2,13 +2,12 @@
 
 {% block content %}
 
-<h1>Update {{task.name}}</h1>
-<!-- <h6>Name: {{task.name}} </h6> -->
-<!-- <h6>Amount: {{task.amount}} </h6> -->
+<h5>Update {{task.name}}</h5>
 <form action="" method="post">
     {% csrf_token %}
     {{form.as_p}}
     <input type="submit" value="Update"/>
+    <a href="{% url 'task_detail' task.pk %}">Cancel</a>
 </form>
 
 {% endblock %}

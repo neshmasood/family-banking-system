@@ -7,7 +7,6 @@
             <p>Name: {{ family.name }}</p>
             <p>Description: {{ family.description }}</p>
         </div>
-
         <div>
             <a href="{% url 'families_update' family.id %}">Edit</a>
             <a href="{% url 'families_delete' family.id %}">Delete</a>

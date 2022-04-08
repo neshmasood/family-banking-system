@@ -3,10 +3,10 @@
 {% block content %}
 
     <h2>Delete a Task</h2>
-    <h3>Are you sure you want to delete this task: "{{task}}" ?</h3>
+    <h3>Are you sure you want to delete this task: "{{task}}"?</h3>
     <form method="post">
         {% csrf_token %}
-        <input type="submit" value="Yes - Delete!"/>
+        <input type="submit" value="Yes!"/>
         <a href="{% url 'task_detail' task.pk %}">Cancel</a>
     </form>
 

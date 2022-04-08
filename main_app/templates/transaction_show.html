@@ -8,10 +8,15 @@
         <div>
             <p>Amount: {{ transaction.amount }}</p>
             <p>Owned by:</p>
+
             {% for task in transaction.task_set.all %}
+
                 <p>{{ task.name }}</p>
+
             {% empty %}
-                <p>Nobody has this transaction</p>
+
+                <p>Nobody has this transaction.</p>
+                
             {% endfor %}
         </div>
 

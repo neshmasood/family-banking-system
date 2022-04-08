@@ -17,6 +17,53 @@ from .forms import SignUpForm
 
 # Create your views here.
 
+def login_view(request):
+    # if POST, then authenticate the user (submitting the username and password)
+    if request.method == 'POST':
+        form = AuthenticationForm(request, request.POST)
+        if form.is_valid():
+            u = form.cleaned_data['username']
+            p = form.cleaned_data['password']
+            user = authenticate(username = u, password = p)
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    return HttpResponseRedirect('/dashboard/')
+                else:
+                    return render(request, 'login.html', {'form': form})
+            else:
+                return render(request, 'login.html', {'form': form})
+        else: 
+            return render(request, 'signup.html', {'form': form})
+    else: # it was a get request so send the emtpy login form
+        # form = LoginForm()
+        form = AuthenticationForm()
+        return render(request, 'login.html', {'form': form})
+
+
+
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect('/')
+
+
+
+def signup_view(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('/')
+    else:
+        form = SignUpForm()
+    return render(request, 'signup.html', {'form': form})
+
+
+
 
 class Landing_Page(TemplateView): 
     template_name = 'landing_page.html'
@@ -95,7 +142,7 @@ def transactions_show(request, transaction_id):
 class Transaction_Create(CreateView):
     model = Transaction
     fields = '__all__'
-    template_name = "transaction_form.html"
+    template_name = "transaction_create.html"
     success_url = '/transactions'
 
 
@@ -115,79 +162,48 @@ class Transaction_Delete(DeleteView):
 
 
 
+class Family_List(TemplateView):
+    template_name = 'familylist.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        name = self.request.GET.get("name")
+        if name != None:
+            # .filter is the sql WHERE statement and name__icontains is doing a search for any name that contains the query param
+            context['families'] = Family.objects.filter(name_icontains=name)
+            context['header'] = f"Searching for {name}"
+        else:
+            context['families'] = Family.objects.all()
+            context['header'] = "My Family Members" # this is where we add the key into our context object for the view to use
+        return context 
+
+
 class Family_Create(LoginRequiredMixin, CreateView):
     model = Family
     fields = ['name', 'description']
-    template_name = "task_create.html"
-    success_url = '/'
+    template_name = "family_create.html"
+    success_url = '/families'
     def form_valid(self, form):
         self.object = form.save(commit=False)
         self.object.user = self.request.user
         self.object.save()
-        return HttpResponseRedirect('/tasks')
+        return HttpResponseRedirect('/families')
 
+   
 
+class Family_Detail(DetailView): 
+    model = Family
+    template_name="family_detail.html"
 
+class Family_Update(UpdateView):
+    model = Family
+    fields = ['name', 'description']
+    template_name = "family_update.html"
+    def get_success_url(self):
+        return reverse('family_detail', kwargs={'pk': self.object.pk})
 
-
-
-
-# django auth
-# def login_view(request):
-#     # errors = ''
-#     if request.method == "POST":
-#         form = UserCreationForm(request.POST)
-#         if form.is_valid():
-#             user = form.save()
-#             login(request, user)
-#             return redirect('/')
-#         else:
-#             errors = form.errors
-#     form = UserCreationForm()
-#     return render(request, 'login.html', {'form': form, 'errors': errors})
-
-def login_view(request):
-    # if POST, then authenticate the user (submitting the username and password)
-    if request.method == 'POST':
-        form = AuthenticationForm(request, request.POST)
-        if form.is_valid():
-            u = form.cleaned_data['username']
-            p = form.cleaned_data['password']
-            user = authenticate(username = u, password = p)
-            if user is not None:
-                if user.is_active:
-                    login(request, user)
-                    return HttpResponseRedirect('/dashboard/')
-                else:
-                    return render(request, 'login.html', {'form': form})
-            else:
-                return render(request, 'login.html', {'form': form})
-        else: 
-            return render(request, 'signup.html', {'form': form})
-    else: # it was a get request so send the emtpy login form
-        # form = LoginForm()
-        form = AuthenticationForm()
-        return render(request, 'login.html', {'form': form})
-
-
-
-def logout_view(request):
-    logout(request)
-    return HttpResponseRedirect('/')
-
-
-
-def signup_view(request):
-    if request.method == 'POST':
-        form = SignUpForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=raw_password)
-            login(request, user)
-            return redirect('/')
-    else:
-        form = SignUpForm()
-    return render(request, 'signup.html', {'form': form})
+class Family_Delete(DeleteView):
+    model = Task
+    template_name = "family_delete_confirmation.html"
+    success_url = "/families/"
 

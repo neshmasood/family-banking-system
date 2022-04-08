@@ -1,18 +1,18 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>List of Transactions</h1>
+    <h3>List of Transactions</h3>
 
     {% for transaction in transactions %}
         <div>
-            <a href="{% url 'transactions_show' transaction.id %}">
-                <div>
+            <div>
+                <a href="{% url 'transactions_show' transaction.id %}">
                     <p>Amount: ${{ transaction.amount }}</p>
-                    <p>Date: {{ transaction.date }}</p>
-                </div>
-            </a>
+                </a>
+            </div>
+            <p>Date: {{transaction.date}} </p>
         </div>
-        <hr/>
+        
     {% endfor %}
 
 {% endblock %}
