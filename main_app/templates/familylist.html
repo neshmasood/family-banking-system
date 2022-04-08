@@ -13,7 +13,7 @@ List of Family Members
     {% for family in families %}
 
     <a href="{% url 'family_detail' family.pk %}">
-        <h6>Name: {{family.name}}</h6>
+        <h6>Name: {{family.member_name}}</h6>
     </a>
    
     {% endfor %}

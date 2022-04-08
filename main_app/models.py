@@ -46,11 +46,11 @@ class Task(models.Model):
 
 
 class Family(models.Model):
-    name = models.CharField(max_length=50),
+    member_name = models.CharField(max_length=50),
     description = models.CharField(max_length=200)
 
     def __str__(self):
-        return self.name
+        return self.member_name
 
 
 

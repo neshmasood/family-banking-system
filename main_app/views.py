@@ -17,6 +17,8 @@ from .forms import SignUpForm
 
 # Create your views here.
 
+# django auth
+
 def login_view(request):
     # if POST, then authenticate the user (submitting the username and password)
     if request.method == 'POST':
@@ -35,7 +37,7 @@ def login_view(request):
                 return render(request, 'login.html', {'form': form})
         else: 
             return render(request, 'signup.html', {'form': form})
-    else: # it was a get request so send the emtpy login form
+    else: # it was a get request so send the empty login form
         # form = LoginForm()
         form = AuthenticationForm()
         return render(request, 'login.html', {'form': form})
@@ -72,7 +74,7 @@ class Dashboard(TemplateView):
     template_name = 'dashboard.html'
 
 
-
+# Task CRUD
 class Task_List(TemplateView):
     template_name = 'tasklist.html'
 
@@ -110,7 +112,6 @@ class Task_Update(UpdateView):
     model = Task
     fields = ['name', 'amount', 'duedate', 'description', 'task_status', 'task_approval', 'transactions']
     template_name = "task_update.html"
-    # success_url = "/tasks/"
     def get_success_url(self):
         return reverse('task_detail', kwargs={'pk': self.object.pk})
 
@@ -138,6 +139,7 @@ def transactions_show(request, transaction_id):
     return render(request, 'transaction_show.html', {'transaction': transaction})
 
 
+# transactions CRUD
 
 class Transaction_Create(CreateView):
     model = Transaction
@@ -162,6 +164,7 @@ class Transaction_Delete(DeleteView):
 
 
 
+# Family CRUD
 class Family_List(TemplateView):
     template_name = 'familylist.html'
 

@@ -3,7 +3,7 @@
 {% block content %}
 
     <h4>Remove a family member from your account.</h4>
-    <p>Are you sure you want to remove "{{task}}" from your account?</p>
+    <p>Are you sure you want to remove "{{member_name}}" from your account?</p>
     <form method="post">
         {% csrf_token %}
         <input type="submit" value="Yes!"/>
