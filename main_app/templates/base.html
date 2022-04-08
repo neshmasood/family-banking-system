@@ -41,11 +41,18 @@
             <a class="navbar-link active" href="/tasks/new">Add a Task</a>
           </li>
           <li class="nav-item">
-            <a class="navbar-link active" href="{% url 'transactions_create' %}">Account</a>
+            <a href="/transactions">Transactions</a>
+          </li>
+          <li class="nav-item">
+            <a class="navbar-link active" href="{% url 'transactions_create' %}">make transaction</a>
           </li>
           <li class="nav-item">
             <a class="navbar-link active" href="{% url 'dashboard' %}">Dashboard</a>
           </li>
+          <!-- <li class="nav-item">
+            <a class="navbar-link active" href="{% url 'dashboard' %}">My Family</a>
+          </li> -->
+         
           {% else %}
           <li class="nav-item">
             <a class="navbar-link active" href="{% url 'login' %}">Login</a>

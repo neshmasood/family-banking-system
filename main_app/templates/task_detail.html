@@ -3,22 +3,22 @@
 {% block content %}
 
 <div>
-    <h3>Name: {{task.name}} </h3>
-    <h3>Amount: {{task.amount}} </h3>
-    <h3>Due Date: {{task.duedate}} </h3>
-    <h3>Description: {{task.description}} </h3>
-    <h3>Task-Status: {{task.task_status}} </h3>
-    <h3>Task-Approval: {{task.task_approval}} </h3>
-    <h3>Assigned To: {{task.user.assigned_to}} </h3>
+    <h5>Name: {{task.name}} </h5>
+    <h5>Amount: {{task.amount}} </h5>
+    <h5>Due Date: {{task.duedate}} </h5>
+    <h5>Description: {{task.description}} </h5>
+    <h5>Task-Status: {{task.task_status}} </h5>
+    <h5>Task-Approval: {{task.task_approval}} </h5>
+    <h5>Assigned To: {{task.user.assigned_to}} </h5>
     <p>Created by:
         <a href="/user/{{ task.user.username }}">{{ task.user.username }}</a>
     </p>
-    <h3>Transactions made:</h3>
+    <h5>Transactions made:</h5>
     
     {% for transaction in task.transactions.all %}
         <div>{{ transaction.amount }}</div>
     {% empty %}
-        <div> {task.name} has no transactions 🙁</div>
+        <div> No transactions has been made for this task 🙁</div>
     {% endfor %}
 </div>
 <div>

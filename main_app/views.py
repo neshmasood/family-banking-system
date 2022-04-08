@@ -84,7 +84,7 @@ def profile(request, username):
 
 def transactions_index(request):
     transactions = Transaction.objects.all()
-    return render(request, 'dashboard.html', {'transactions': transactions})
+    return render(request, 'transaction_index.html', {'transactions': transactions})
 
 def transactions_show(request, transaction_id):
     transaction = Transaction.objects.get(id=transaction_id)
