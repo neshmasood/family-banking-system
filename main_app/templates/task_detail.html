@@ -5,21 +5,21 @@
 <div>
     <h5>Name: {{task.name}} </h5>
     <h5>Amount: {{task.amount}} </h5>
-    <h5>Due Date: {{task.duedate}} </h5>
+    <h5>Due Date: {{task.due_date}} </h5>
     <h5>Description: {{task.description}} </h5>
     <h5>Task-Status: {{task.task_status}} </h5>
     <h5>Task-Approval: {{task.task_approval}} </h5>
-    <h5>Assigned To: {{task.user.assigned_to}} </h5>
+    
     <p>Created by:
         <a href="/user/{{ task.user.username }}">{{ task.user.username }}</a>
     </p>
-    <h5>Transactions made:</h5>
+    <h5>Task assigned to:</h5>
     
-    {% for transaction in task.transactions.all %}
-        <div>{{ transaction.amount }}</div>
+    <!-- {% for family in task.family.all %}
+        <div>{{ family.fam_name }}</div>
     {% empty %}
-        <div> No transactions has been made for this task 🙁</div>
-    {% endfor %}
+        <div> This task has not been assigned to any family member yet 🙁</div>
+    {% endfor %} -->
 </div>
 <div>
     <a href="{% url 'task_update' task.pk %}">Update</a>

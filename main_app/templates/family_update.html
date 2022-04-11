@@ -1,13 +1,30 @@
-{% extends 'base.html' %}
+<!-- {% extends 'base.html' %}
 
 {% block content %}
 
-<h5>Update {{family.name}}</h5>
+<h5>Update {{family.fam_name}}</h5>
 <form action="" method="post">
     {% csrf_token %}
     {{form.as_p}}
     <input type="submit" value="Update"/>
     <a href="{% url 'family_detail' family.pk %}">Cancel</a>
 </form>
+
+{% endblock %} -->
+
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Update Family</h1>
+
+    <form action="" method="post">
+        {% csrf_token%}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <input type="submit" value="Update">
+        <a href="{% url 'family_detail' family.pk %}">Cancel</a>
+    </form>
 
 {% endblock %}

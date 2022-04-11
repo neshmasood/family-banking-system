@@ -13,7 +13,7 @@
     <!-- CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
-<body id="kt_body" class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled aside-fixed aside-default-enabled"></body>>
+<body id="kt_body" class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled aside-fixed aside-default-enabled">
 
     <nav class="navbar navbar-expand-md py-4 navbar-dark bg-dark shadow-sm">
       <div class="container">
@@ -42,20 +42,20 @@
           <li class="nav-item active">
             <a href="/tasks/new">Add Task</a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a href="/transactions">Transactions</a>
           </li>
           <li class="nav-item">
             <a class="navbar-link active" href="{% url 'transactions_create' %}">make transaction</a>
-          </li>
+          </li> -->
           <li class="nav-item">
             <a class="navbar-link active" href="{% url 'dashboard' %}">Dashboard</a>
           </li>
+          <!-- <li class="nav-item">
+            <a class="navbar-link active" href="{% url 'families_index' %}">My Family</a>
+          </li> -->
           <li class="nav-item">
-            <a class="navbar-link active" href="{% url 'family_list' %}">My Family</a>
-          </li>
-          <li class="nav-item">
-            <a class="navbar-link active" href="/families/new">Add Family Member</a>
+            <a class="navbar-link active" href="{% url 'families_create' %}">Add Family Member</a>
           </li>
          
           {% else %}

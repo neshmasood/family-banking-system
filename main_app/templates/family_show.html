@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Family Details</h1>
+
+    <!-- I have to come back to this. I want user name shown with whom teh transaction is associated to -->
+    <div>
+        <div>
+            <h4>Name: {{ family.fam_name }}</h4>
+            <p>Description: {{ family.description }}</p>
+            <p>Tasks:</p>
+            {% for task in family.task_set.all %}
+                <p>{{ task.name }}</p>
+            {% empty %}
+                <p>This is person doesn't have any tasks assigned to them.</p>
+            {% endfor %}
+        </div>
+
+        <div>
+            <a href="{% url 'families_update' family.id %}">Edit</a>
+            <a href="{% url 'families_delete' family.id %}">Delete</a>
+        </div>
+    </div>
+
+{% endblock %}

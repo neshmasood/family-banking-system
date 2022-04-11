@@ -7,7 +7,7 @@
     <form method="post">
         {% csrf_token %}
         <input type="submit" value="Yes!"/>
-        <a href="{% url 'task_detail' task.pk %}">Cancel</a>
+        <a href="{% url 'task_list' %}">Cancel</a>
     </form>
 
 {% endblock %}

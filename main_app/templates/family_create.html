@@ -1,13 +1,18 @@
 
+
+
 {% extends 'base.html' %}
 
 {% block content %}
 
-<h1>Add a family member</h1>
-<form method="post">
-    {% csrf_token %}
-    {{form.as_p}}
-    <input type="submit" value="Submit" />
-</form>
+    <h3>Add a family member</h3>
+    <form class="family-table" action="" method="post">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <input type="submit" value="Submit!">
+        <a href="{% url 'dashboard' %}">Cancel</a>
+    </form>
 
 {% endblock %}

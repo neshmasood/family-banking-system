@@ -1,5 +1,5 @@
 
-<!-- {% extends 'base.html' %}
+{% extends 'base.html' %}
 
 {% block title %}
 List of Family Members
@@ -12,13 +12,10 @@ List of Family Members
 <h3>{{header}}</h3>
     {% for family in families %}
 
-    <a href="{% url 'family_detail' family.pk %}">
-        <h6>Fam_Name: {{family.fam_name}}</h6>
+    <a href="{% url 'families_show' family.id %}">
+        <p>Fam_Name: {{family.fam_name}}</p>
     </a>
    
     {% endfor %}
 
 {% endblock %} -->
-
-
-

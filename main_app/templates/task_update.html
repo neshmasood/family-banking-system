@@ -7,7 +7,7 @@
     {% csrf_token %}
     {{form.as_p}}
     <input type="submit" value="Update"/>
-    <a href="{% url 'task_detail' task.pk %}">Cancel</a>
+    <a href="{% url 'task_list' %}">Cancel</a>
 </form>
 
 {% endblock %}

@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.urls import reverse
-from .models import Family, Task, Transaction, Assignment
+from .models import Family, Task, Transaction
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from .forms import SignUpForm
@@ -91,7 +91,7 @@ class Task_List(TemplateView):
 
 class Task_Create(LoginRequiredMixin, CreateView):
     model = Task
-    fields = ['name', 'amount', 'duedate', 'description', 'task_status', 'task_approval', 'user']
+    fields = ['name', 'amount', 'duedate', 'description', 'task_status', 'task_approval']
     template_name = "task_create.html"
     success_url = '/'
     def form_valid(self, form):
@@ -108,7 +108,7 @@ class Task_Detail(DetailView):
 
 class Task_Update(UpdateView):
     model = Task
-    fields = ['name', 'amount', 'duedate', 'description', 'task_status', 'task_approval', 'transactions']
+    fields = ['name', 'amount', 'duedate', 'description', 'task_status', 'task_approval', 'families']
     template_name = "task_update.html"
     # success_url = "/tasks/"
     def get_success_url(self):
@@ -162,48 +162,86 @@ class Transaction_Delete(DeleteView):
 
 
 
-class Family_List(TemplateView):
-    template_name = 'familylist.html'
+# Families view function
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        name = self.request.GET.get("name")
-        if name != None:
-            # .filter is the sql WHERE statement and name__icontains is doing a search for any name that contains the query param
-            context['families'] = Family.objects.filter(name_icontains=name)
-            context['header'] = f"Searching for {name}"
-        else:
-            context['families'] = Family.objects.all()
-            context['header'] = "My Family Members" # this is where we add the key into our context object for the view to use
-        return context 
+def families_index(request):
+    families = Family.objects.all()
+    return render(request, 'family_index.html', {'families': families})
+
+def families_show(request, family_id):
+    family = Family.objects.get(id=family_id)
+    return render(request, 'family_show.html', {'family': family})
 
 
-class Family_Create(LoginRequiredMixin, CreateView):
-    model = Family
+
+class Family_Create(CreateView):
+    model = Task
     fields = ['name', 'description']
     template_name = "family_create.html"
-    success_url = '/families'
-    def form_valid(self, form):
-        self.object = form.save(commit=False)
-        self.object.user = self.request.user
-        self.object.save()
-        return HttpResponseRedirect('/families')
+    success_url = "/families/"
 
-   
 
-class Family_Detail(DetailView): 
-    model = Family
-    template_name="family_detail.html"
 
 class Family_Update(UpdateView):
-    model = Family
+    model = Task
     fields = ['name', 'description']
     template_name = "family_update.html"
-    def get_success_url(self):
-        return reverse('family_detail', kwargs={'pk': self.object.pk})
+    success_url = "/families"
+
 
 class Family_Delete(DeleteView):
     model = Task
     template_name = "family_delete_confirmation.html"
     success_url = "/families/"
+
+
+
+
+
+
+
+# class Family_List(TemplateView):
+#     template_name = 'familylist.html'
+
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         fam_name = self.request.GET.get("fam_name")
+#         if fam_name != None:
+#             # .filter is the sql WHERE statement and name__icontains is doing a search for any name that contains the query param
+#             context['families'] = Family.objects.filter(name_icontains=fam_name)
+#             context['header'] = f"Searching for {fam_name}"
+#         else:
+#             context['families'] = Family.objects.all()
+#             context['header'] = "My Family Members" # this is where we add the key into our context object for the view to use
+#         return context 
+
+
+# class Family_Create(LoginRequiredMixin, CreateView):
+#     model = Family
+#     fields = ['fam_name', 'description']
+#     template_name = "family_create.html"
+#     success_url = '/families'
+#     def form_valid(self, form):
+#         self.object = form.save(commit=False)
+#         self.object.user = self.request.user
+#         self.object.save()
+#         return HttpResponseRedirect('/families/')
+
+   
+
+# class Family_Detail(DetailView): 
+#     model = Family
+#     template_name="family_detail.html"
+
+# class Family_Update(UpdateView):
+#     model = Family
+#     fields = ['fam_name', 'description']
+#     template_name = "family_update.html"
+#     def get_success_url(self):
+#         return reverse('family_detail', kwargs={'pk': self.object.pk})
+
+# class Family_Delete(DeleteView):
+#     model = Task
+#     template_name = "family_delete_confirmation.html"
+#     success_url = "/families/"
 
